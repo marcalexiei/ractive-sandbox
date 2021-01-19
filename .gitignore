@@ -1,1 +1,8 @@
+# File system
+.DS_store
+
+# Dependencies
 node_modules
+
+# Project bundles
+main.bundle.js

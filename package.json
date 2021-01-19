@@ -6,6 +6,11 @@
   "author": "",
   "devDependencies": {
     "ractive": "edge",
-    "typescript": "4.1.3"
+    "typescript": "4.1.3",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "scripts": {
+    "build:class-props": "cd ractive-with-class-props && webpack --config ./webpack.config.js"
   }
 }
