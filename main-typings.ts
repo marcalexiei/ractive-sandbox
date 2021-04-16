@@ -6,7 +6,7 @@ class MyComponent extends Ractive {
   myFeature() { }
 }
 
-Ractive.extendWith(MyComponent, { 
+Ractive.extendWith(MyComponent, {
   template: 'hello!',
 
   on: {
@@ -15,6 +15,19 @@ Ractive.extendWith(MyComponent, {
     }
   }
 });
+
+const myComponent = new MyComponent();
+
+
+myComponent.sort('asd');
+myComponent.sort<string>('asd', (a, b) => {
+  return -1;
+});
+
+const svg = myComponent.find<SVGElement>('svg');
+const svgs = myComponent.findAll<SVGElement>('svg');
+const svgPath = myComponent.find<SVGPathElement>('svg path');
+const HTMLElement = myComponent.find<HTMLDivElement>('svg');
 
 class MyMainComponent extends Ractive {
   constructor(opts?: InitOpts) { super(opts); }
@@ -37,3 +50,4 @@ const AnotherMainComponent = MyComponent.extend({
     MyComponent,
   },
 }, { template: '' });
+
