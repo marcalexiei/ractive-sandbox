@@ -18,17 +18,6 @@ Ractive.extendWith(MyComponent, {
 
 const myComponent = new MyComponent();
 
-
-myComponent.sort('asd');
-myComponent.sort<string>('asd', (a, b) => {
-  return -1;
-});
-
-const svg = myComponent.find<SVGElement>('svg');
-const svgs = myComponent.findAll<SVGElement>('svg');
-const svgPath = myComponent.find<SVGPathElement>('svg path');
-const HTMLElement = myComponent.find<HTMLDivElement>('svg');
-
 class MyMainComponent extends Ractive {
   constructor(opts?: InitOpts) { super(opts); }
 }
@@ -51,3 +40,29 @@ const AnotherMainComponent = MyComponent.extend({
   },
 }, { template: '' });
 
+// Ractive.sort
+myComponent.sort('asd');
+myComponent.sort<string>('asd', (a, b) => {
+  return a.indexOf('a');
+});
+
+// Ractive.find
+const el = myComponent.find('div');
+const svg = myComponent.find<SVGElement>('svg');
+const svgs = myComponent.findAll<SVGElement>('svg');
+const svgPath = myComponent.find<SVGPathElement>('svg path');
+const HTMLElement = myComponent.find<HTMLDivElement>('svg');
+
+// Context
+myComponent.on('foo', function (context) {
+  const bar = context.get<number>('bar');
+
+  const contextEl = context.find('div');
+  const contextSvg = context.find<SVGElement>('svg');
+
+  const contextEls = context.findAll('div');
+  const contextSvgs = context.findAll<SVGElement>('svg');
+
+  const contextCmp = context.findComponent<MyComponent>('MyComponent');
+  const contextCmps = context.findAllComponents<MyComponent>('MyComponent');
+});
